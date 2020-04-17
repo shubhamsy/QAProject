@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @question.name %>
+</p>
+
+<% @users = User.all %>
+<%= select_tag "user", options_from_collection_for_select(@users, "id", "first_name"),:include_blank=> "Select User",:class=>"user",:style=>"width: 100px;" %>
+
+<button class="userfollow" style="width: 100px;">Follow User</button>
+</br>
+<% @topics = Topic.all %>
+<%= select_tag "topic", options_from_collection_for_select(@topics, "id", "name"),:include_blank=> "Select Topic",:class=>"topic",:style=>"width: 100px;" %>
+<button class="topicfollow" style="width: 100px;">Follow Topic</button>
+<br><br>
+<%= link_to 'Back', questions_path %>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$(".userfollow").click(function(){
+			var id = $(".user").val();
+			window.location.href = "/follow_user?question_id=<%= @question.id %>&id="+id;
+		});
+		$(".topicfollow").click(function(){
+			var id = $(".topic").val();
+			window.location.href = "/follow_topic?question_id=<%= @question.id %>&id="+id;
+		});		
+	});
+</script>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Followings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Follow</th>
+      <th>Question</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_followings.each do |user_following| %>
+      <tr>
+        <td><%= user_following.user_id %></td>
+        <td><%= user_following.follow_id %></td>
+        <td><%= user_following.question_id %></td>
+        <td><%= link_to 'Show', user_following %></td>
+        <td><%= link_to 'Edit', edit_user_following_path(user_following) %></td>
+        <td><%= link_to 'Destroy', user_following, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Following', new_user_following_path %>
